@@ -1,10 +1,10 @@
 //Business Logic
 function Customer(){
   this.customerName = "";
-  this.address = [];
   this.pizzaAmount = 0;
   this.pizzas = [];
   this.bill = 0;
+  this.address = [];
   this.fullAddressString = [];
 }
 
@@ -43,10 +43,11 @@ Customer.prototype.amIDoneOrdering = function(){
 
 Customer.prototype.reOrder = function(){
   this.customerName = "";
-  this.address = "";
   this.pizzaAmount = 0;
   this.pizzas = [];
   this.bill = 0;
+  this.address = [];
+  this.fullAddressString = [];
 }
 
 Pizza.prototype.calculateCost = function(){
@@ -106,7 +107,7 @@ $(document).ready(function() {
       return;
     }
     if(!myCustomer.checkUserInputAmount()){
-      alert("You can't eat 0 or a negative number pizzas!");
+      alert("You can't order 0 or a negative number of pizzas");
       return;
     }
     $(this).hide();
