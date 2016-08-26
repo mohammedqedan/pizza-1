@@ -1,8 +1,9 @@
 //Business Logic
-function Pizza(size,toppings){
+function Pizza(size,toppings,id){
   this.sizeOfpizza = size;
   this.toppings = toppings;
   this.price = 0;
+  this.pizzaId = id;
 }
 function Customer(){
   this.customerName = "";
@@ -36,8 +37,16 @@ Customer.prototype.amIDoneOrdering = function(){
 }
 //UI logic
 Pizza.prototype.addToList = function(){
-  $("#pizza-status").show()
-  $("#pizza-list").append("<li>" + this.sizeOfpizza +  " " + this.toppings.length + " topping " + " $" + this.price + ".00" +"</li>");
+  if(this.toppings.length === 0)
+  $("#pizza-list").append("<li class='temp-pizza' id='temp-pizza" + this.pizzaId + "'>" + this.sizeOfpizza +  " plain cheese " + " $" + this.price + ".00" +"</li><br>");
+  else{
+    $("#pizza-list").append("<li class='temp-pizza' id='temp-pizza" + this.pizzaId + "'>" + this.sizeOfpizza +  " " + this.toppings.length + " topping " + " $" + this.price + ".00" +"</li>");
+    $("#temp-pizza"+ this.pizzaId).append("<br>Toppings:<ul id=toppings" + this.pizzaId + "></ul>");
+    for (var i = 0; i < this.toppings.length; i++) {
+      $("#toppings"+ this.pizzaId).append("<li>" + this.toppings[i] + "</li>");
+    }
+    $("#toppings"+ this.pizzaId).append("<br>");
+  }
 }
 
 $(document).ready(function() {
@@ -48,6 +57,7 @@ $(document).ready(function() {
     myCustomer.pizzaAmount = parseInt($("#pizza-amount").val());
     $(this).hide();
     $("#pizza").show();
+    $("#pizza-list-title").show();
   });
   $("form#pizza").submit(function(event){
     event.preventDefault();
@@ -56,7 +66,7 @@ $(document).ready(function() {
     $("input[name=toppings]:checked").each(function() {
       toppings.push(this.value);
     });
-    var myPizza = new Pizza(size,toppings);
+    var myPizza = new Pizza(size,toppings,myCustomer.pizzas.length);
     myCustomer.pizzas.push(myPizza);
     myPizza.calculateCost();
     myPizza.addToList();
@@ -69,6 +79,11 @@ $(document).ready(function() {
   });
   $("form#order").submit(function(event){
     event.preventDefault();
-    alert("Thank you for your order we appreciate your business!")
+    var street = $("#street").val();
+    var city = $("#city").val();
+    var state = $("#state").val();
+    var zip = $("#zip").val();
+    myCustomer.address = street + " " + city + ", " + state + ", " + zip;
+    alert("Your pizza(s) wil arrive at "+ myCustomer.address +" in 30 min. Thank you for your order " + myCustomer.customerName + " we appreciate your business!")
   });
 });
