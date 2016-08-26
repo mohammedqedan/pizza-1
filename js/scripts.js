@@ -27,15 +27,23 @@ Pizza.prototype.calculateCost = function(){
   }
 }
 
+Customer.prototype.checkUserInputName = function(){
+  if(!this.customerName) return false;
+  else return true;
+}
+
+Customer.prototype.checkUserInputAmount = function(){
+  if(this.pizzaAmount < 1) return false;
+  else return true;
+}
+
 Customer.prototype.calculateBill = function(){
   this.bill += this.pizzas[this.pizzas.length-1].price;
 }
 
 Customer.prototype.amIDoneOrdering = function(){
-  if(this.pizzas.length === this.pizzaAmount)
-    return true;
-  else
-    return false;
+  if(this.pizzas.length === this.pizzaAmount) return true;
+  else return false;
 }
 
 Customer.prototype.reOrder = function(){
@@ -44,6 +52,11 @@ Customer.prototype.reOrder = function(){
   this.pizzaAmount = 0;
   this.pizzas = [];
   this.bill = 0;
+}
+
+var checkUserInputAddress = function(street,city,state,zip){
+  if(!street||!city||!state||!zip) return false;
+  else return true;
 }
 
 //UI logic
@@ -65,7 +78,7 @@ Pizza.prototype.addToList = function(){
   }
 }
 
-clearFields = function(){
+var clearFields = function(){
   $("#name").val("");
   $("#pizza-amount").val(1);
   $("#street").val("");
@@ -80,6 +93,14 @@ $(document).ready(function() {
     event.preventDefault();
     myCustomer.customerName = $("#name").val();
     myCustomer.pizzaAmount = parseInt($("#pizza-amount").val());
+    if(!myCustomer.checkUserInputName()){
+      alert("Please enter your name");
+      return;
+    }
+    if(!myCustomer.checkUserInputAmount()){
+      alert("You can't eat 0 or a negative number pizzas!");
+      return;
+    }
     $(this).hide();
     $("#pizza").show();
   });
@@ -107,6 +128,10 @@ $(document).ready(function() {
     var city = $("#city").val();
     var state = $("#state").val();
     var zip = $("#zip").val();
+    if(!checkUserInputAddress(street,city,state,zip)){
+      alert("Please enter all fields so we can find you!");
+      return;
+    }
     myCustomer.address = street + " " + city + ", " + state + ", " + zip;
     alert("Your pizza(s) wil arrive at "+ myCustomer.address +" in 30 min. Thank you for your order " + myCustomer.customerName + " we appreciate your business!");
     $(".temp-pizza").remove();
