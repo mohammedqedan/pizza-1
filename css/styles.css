@@ -33,6 +33,6 @@ form, #pizza, #pizza-box{
   margin-top: 20px;
   margin-bottom: 20px;
 }
-#pizza, #pizza-list-title, #order, #pizza-box{
+#pizza, #order, #pizza-box{
   display: none;
 }

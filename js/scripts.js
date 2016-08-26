@@ -5,6 +5,7 @@ function Pizza(size,toppings,id){
   this.price = 0;
   this.pizzaId = id;
 }
+
 function Customer(){
   this.customerName = "";
   this.address = "";
@@ -25,6 +26,7 @@ Pizza.prototype.calculateCost = function(){
     this.price++;
   }
 }
+
 Customer.prototype.calculateBill = function(){
   this.bill += this.pizzas[this.pizzas.length-1].price;
 }
@@ -35,12 +37,23 @@ Customer.prototype.amIDoneOrdering = function(){
   else
     return false;
 }
+
+Customer.prototype.reOrder = function(){
+  this.customerName = "";
+  this.address = "";
+  this.pizzaAmount = 0;
+  this.pizzas = [];
+  this.bill = 0;
+}
+
 //UI logic
 Pizza.prototype.addToList = function(){
-  $("#main-column").removeClass("col-sm-12");
-  $("#main-column").addClass("col-sm-7");
-  $("#pizza-box").show();
-  if(this.toppings.length === 0)
+  if(!this.pizzaId){
+    $("#main-column").removeClass("col-sm-12");
+    $("#main-column").addClass("col-sm-7");
+    $("#pizza-box").show();
+  }
+  if(!this.toppings.length)
   $("#pizza-list").append("<li class='temp-pizza' id='temp-pizza" + this.pizzaId + "'>" + this.sizeOfpizza +  " plain cheese " + " $" + this.price + ".00" +"</li><br>");
   else{
     $("#pizza-list").append("<li class='temp-pizza' id='temp-pizza" + this.pizzaId + "'>" + this.sizeOfpizza +  " " + this.toppings.length + " topping " + " $" + this.price + ".00" +"</li>");
@@ -52,6 +65,15 @@ Pizza.prototype.addToList = function(){
   }
 }
 
+clearFields = function(){
+  $("#name").val("");
+  $("#pizza-amount").val(1);
+  $("#street").val("");
+  $("#city").val("");
+  $("#state").val("");
+  $("#zip").val("");
+}
+
 $(document).ready(function() {
   var myCustomer = new Customer();
   $("form#customer").submit(function(event){
@@ -60,7 +82,6 @@ $(document).ready(function() {
     myCustomer.pizzaAmount = parseInt($("#pizza-amount").val());
     $(this).hide();
     $("#pizza").show();
-    $("#pizza-list-title").show();
   });
   $("form#pizza").submit(function(event){
     event.preventDefault();
@@ -76,7 +97,7 @@ $(document).ready(function() {
     myCustomer.calculateBill();
     if(myCustomer.amIDoneOrdering()){
       $(this).hide();
-      $("#total").append("Your total is $" + myCustomer.bill + ".00");
+      $("#total").text("Your total is $" + myCustomer.bill + ".00");
       $("#order").show();
     }
   });
@@ -87,6 +108,14 @@ $(document).ready(function() {
     var state = $("#state").val();
     var zip = $("#zip").val();
     myCustomer.address = street + " " + city + ", " + state + ", " + zip;
-    alert("Your pizza(s) wil arrive at "+ myCustomer.address +" in 30 min. Thank you for your order " + myCustomer.customerName + " we appreciate your business!")
+    alert("Your pizza(s) wil arrive at "+ myCustomer.address +" in 30 min. Thank you for your order " + myCustomer.customerName + " we appreciate your business!");
+    $(".temp-pizza").remove();
+    $(this).hide();
+    $("#customer").show();
+    $("#main-column").addClass("col-sm-12");
+    $("#main-column").removeClass("col-sm-7");
+    $("#pizza-box").hide();
+    myCustomer.reOrder();
+    clearFields();
   });
 });

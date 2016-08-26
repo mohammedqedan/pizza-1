@@ -18,18 +18,18 @@
           <h3>Enter your name and number of pizzas you want to order.</h3>
           <div class="form-group">
             <label for="name">Name</label>
-            <input type="text" id="name" class="form-control">
+            <input type="text" id="name" class="form-control" placeholder="Name">
           </div>
           <div class="form-group">
             <label for="name">How many pizzas would you like to order?</label>
-            <input type="number" id="pizza-amount" class="form-control">
+            <input type="number" id="pizza-amount" class="form-control" value="1">
           </div>
           <div class="form-group">
             <button class="btn">Submit</button>
           </div>
         </form>
         <form id="pizza">
-          <h3>On this pizza pick your options</h3>
+          <h3>Pick your size and toppings</h3>
           <label for"size">Pick your size of pizza</label>
           <div class="form-group">
             <label class="radio-inline">
@@ -47,21 +47,27 @@
           </div>
           <label>Pick your toppings</label>
           <div class="form-group">
-            <label class="checkbox-inline">
-              <input type="checkbox" name="toppings" value="Olives">
-              Olives
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="toppings"value="Chicken">
-              Chicken
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="toppings"value="X-cheese">
-              Extra Cheese
-            </label>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="toppings" value="Olives">
+                Olives
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="toppings"value="Chicken">
+                Chicken
+              </label>
+            </div>
+            <div class="checkbox">
+              <label>
+                <input type="checkbox" name="toppings"value="Extra cheese">
+                Extra Cheese
+              </label>
+            </div>
           </div>
           <div class="form-group">
-            <label for"">You get one for free extra toppings are $1 each!</label>
+            <label for"">You get one topping for free extra toppings are $1</label>
           </div>
           <div class="form-group">
             <button class="btn">Submit Pizza Choice</button>
@@ -73,19 +79,19 @@
           </div>
           <div class="form-group">
             <label for="street">Street</label>
-            <input type="text" id="street" class="form-control">
+            <input type="text" id="street" class="form-control" placeholder="Street">
           </div>
           <div class="form-group">
             <label for="city">City</label>
-            <input type="text" id="city" class="form-control">
+            <input type="text" id="city" class="form-control" placeholder="City">
           </div>
           <div class="form-group">
             <label for="state">State</label>
-            <input type="text" id="state" class="form-control">
+            <input type="text" id="state" class="form-control" placeholder="State">
           </div>
           <div class="form-group">
             <label for="zip">Zip Code</label>
-            <input type="number" id="zip" class="form-control">
+            <input type="number" id="zip" class="form-control" placeholder="Zip Code">
           </div>
           <div class="form-group">
             <button class="btn">Order!</button>
