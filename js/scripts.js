@@ -1,4 +1,13 @@
 //Business Logic
+function Customer(){
+  this.customerName = "";
+  this.address = [];
+  this.pizzaAmount = 0;
+  this.pizzas = [];
+  this.bill = 0;
+  this.fullAddressString = [];
+}
+
 function Pizza(size,toppings,id){
   this.sizeOfpizza = size;
   this.toppings = toppings;
@@ -6,25 +15,11 @@ function Pizza(size,toppings,id){
   this.pizzaId = id;
 }
 
-function Customer(){
-  this.customerName = "";
-  this.address = "";
-  this.pizzaAmount = 0;
-  this.pizzas = [];
-  this.bill = 0;
-}
-
-Pizza.prototype.calculateCost = function(){
-  this.price = 10;
-  if(this.sizeOfpizza === "Medium"){
-    this.price+=2;
-  }
-  else if (this.sizeOfpizza === "Large"){
-    this.price+=4;
-  }
-  for (var i = 1; i < this.toppings.length; i++) {
-    this.price++;
-  }
+function Address(street,city,state,zip){
+  this.street = street;
+  this.city = city;
+  this.state = state;
+  this.zip = zip;
 }
 
 Customer.prototype.checkUserInputName = function(){
@@ -54,8 +49,21 @@ Customer.prototype.reOrder = function(){
   this.bill = 0;
 }
 
-var checkUserInputAddress = function(street,city,state,zip){
-  if(!street||!city||!state||!zip) return false;
+Pizza.prototype.calculateCost = function(){
+  this.price = 10;
+  if(this.sizeOfpizza === "Medium"){
+    this.price+=2;
+  }
+  else if (this.sizeOfpizza === "Large"){
+    this.price+=4;
+  }
+  for (var i = 1; i < this.toppings.length; i++) {
+    this.price++;
+  }
+}
+
+Address.prototype.checkUserInputAddress = function(){
+  if(!this.street||!this.city||!this.state||!this.zip) return false;
   else return true;
 }
 
@@ -128,12 +136,14 @@ $(document).ready(function() {
     var city = $("#city").val();
     var state = $("#state").val();
     var zip = $("#zip").val();
-    if(!checkUserInputAddress(street,city,state,zip)){
+    var myAddress = new Address(street,city,state,zip);
+    if(!myAddress.checkUserInputAddress()){
       alert("Please enter all fields so we can find you!");
       return;
     }
-    myCustomer.address = street + " " + city + ", " + state + ", " + zip;
-    alert("Your pizza(s) wil arrive at "+ myCustomer.address +" in 30 min. Thank you for your order " + myCustomer.customerName + " we appreciate your business!");
+    myCustomer.address[0] = myAddress;
+    myCustomer.fullAddressString[0] = myCustomer.address[0].street + " " + myCustomer.address[0].city + ", " + myCustomer.address[0].state + ", " + myCustomer.address[0].zip;
+    alert("Your pizza(s) wil arrive at "+ myCustomer.fullAddressString +" in 30 min. Thank you for your order " + myCustomer.customerName + " we appreciate your business!");
     $(".temp-pizza").remove();
     $(this).hide();
     $("#customer").show();
