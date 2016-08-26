@@ -16,10 +16,18 @@ _Link to site on gh-pages: https://yqedan.github.io/pizza_
 
 ## Specifications
 
-* Behavior: A single list item is added if user enters a 1, item removed when form is re submitted input: 1 output: 1 formatted into a list
-  * **Example input:** "1"
-  * **Example output:** 1 formatted into a list in HTML
-
+* Behavior: Customer can select the number of pizzas they want to order:
+  * **Example input:** "2"
+  * **Example output:** customer is billed for 2 pizzas
+* Behavior: Customer can select the toppings
+  * **Example input:** "Olives, Extra Cheese"
+  * **Example output:** customer is billed for a 2 topping pizza
+* Behavior: Customer can select the size of their pizza
+  * **Example input:** "Large"
+  * **Example output:** customer is billed for a large pizza
+* Behavior: Customer can select different toppings or sizes on each of their pizzas
+  * **Example input:** "Olives, Extra Cheese, Small" on first and no toppings and "Large" on second
+  * **Example output:** customer is billed for a 2 topping small pizza and a large plain pizza
 
 ## Known Bugs
 
