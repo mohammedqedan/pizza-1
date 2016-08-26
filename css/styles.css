@@ -1,6 +1,38 @@
+*{
+  border-radius: 4px;
+  font-family: "Lucida Sans Unicode", "Lucida Grande", sans-serif;
+}
+body{
+  background-image: url(http://images.clipartpanda.com/pizza-clipart-pizza6.png);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-position: top;
+  background-size: 500px;
+  background-color: #803E15;
+
+}
+.btn{
+  background-color: rgba(255, 255, 255, .5);
+}
+.form-control{
+  background-color: rgba(255, 255, 255, .5);
+}
+.container{
+  background-color: rgba(85, 33, 0, .6);
+}
 .well{
   text-align: center;
+  margin-top: 20px;
+  margin-bottom: 0px;
+  background-color: rgba(212, 147, 106, .7);
+  border: 0px;
 }
-#pizza, #pizza-list-title, #order{
+form, #pizza, #pizza-box{
+  background-color: rgba(212, 147, 106, .7);
+  padding: 10px;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+#pizza, #pizza-list-title, #order, #pizza-box{
   display: none;
 }

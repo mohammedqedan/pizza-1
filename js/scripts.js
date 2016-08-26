@@ -37,6 +37,9 @@ Customer.prototype.amIDoneOrdering = function(){
 }
 //UI logic
 Pizza.prototype.addToList = function(){
+  $("#main-column").removeClass("col-sm-12");
+  $("#main-column").addClass("col-sm-7");
+  $("#pizza-box").show();
   if(this.toppings.length === 0)
   $("#pizza-list").append("<li class='temp-pizza' id='temp-pizza" + this.pizzaId + "'>" + this.sizeOfpizza +  " plain cheese " + " $" + this.price + ".00" +"</li><br>");
   else{

@@ -10,10 +10,10 @@
 <body>
   <div class="container">
     <div class="well">
-      <h2>Wecome to Yusuf's Pizza Palace!</h2>
+      <h1>Wecome to Yusuf's Pizza Palace!</h1>
     </div>
     <div class="row">
-      <div class="col-sm-7">
+      <div id="main-column" class="col-sm-12">
         <form id="customer">
           <h3>Enter your name and number of pizzas you want to order.</h3>
           <div class="form-group">
@@ -25,7 +25,7 @@
             <input type="number" id="pizza-amount" class="form-control">
           </div>
           <div class="form-group">
-            <button class="btn btn-primary">Submit</button>
+            <button class="btn">Submit</button>
           </div>
         </form>
         <form id="pizza">
@@ -64,7 +64,7 @@
             <label for"">You get one for free extra toppings are $1 each!</label>
           </div>
           <div class="form-group">
-            <button class="btn btn-primary">Submit Pizza Choice</button>
+            <button class="btn">Submit Pizza Choice</button>
           </div>
         </form>
         <form id="order">
@@ -88,15 +88,16 @@
             <input type="number" id="zip" class="form-control">
           </div>
           <div class="form-group">
-            <button class="btn btn-primary">Order!</button>
+            <button class="btn">Order!</button>
           </div>
         </form>
       </div>
       <div class="col-sm-5">
-        <h3 id="pizza-list-title">Your Pizzas:</h3>
-        <ol id="pizza-list">
-
-        </ol>
+        <div id="pizza-box">
+          <h3 id="pizza-list-title">Your Pizzas:</h3>
+          <ol id="pizza-list">
+          </ol>
+        </div>
       </div>
     </div>
   </div>
