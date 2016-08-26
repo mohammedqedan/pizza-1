@@ -4,19 +4,20 @@ function Pizza(size,toppings){
   this.toppings = toppings;
   this.price = 0;
 }
-function Customer(name,pizzas){
-  this.customerName = name;
+function Customer(){
+  this.customerName = "";
   //this.address = address;
-  this.pizzas = pizzas;
+  this.pizzaAmount = 0;
+  this.pizzas = [];
   this.bill = 0;
 }
 
 Pizza.prototype.calculateCost = function(){
   this.price = 10;
-  if(this.sizeOfpizza === "medium"){
+  if(this.sizeOfpizza === "Medium"){
     this.price+=2;
   }
-  else if (this.sizeOfpizza === "large"){
+  else if (this.sizeOfpizza === "Large"){
     this.price+=4;
   }
   for (var i = 1; i < this.toppings.length; i++) {
@@ -24,23 +25,38 @@ Pizza.prototype.calculateCost = function(){
   }
 }
 //UI logic
+Pizza.prototype.addToList = function(){
+  $("#pizza-list").show().append("<li>" + this.sizeOfpizza +  " " + this.toppings.length + " topping " + " $" + this.price + ".00" +"</li>");
+}
+
+var myCustomer = new Customer();
 $(document).ready(function() {
-  $("form").submit(function(event){
+  $("form#customer").submit(function(event){
     event.preventDefault();
-    var name = $("#name").val();
+    myCustomer.customerName = $("#name").val();
+    myCustomer.pizzaAmount = parseInt($("#pizza-amount").val());
+    $(this).hide();
+    $("#pizza").show();
+  });
+  $("form#pizza").submit(function(event){
+    event.preventDefault();
     var size = $("input:radio[name=size]:checked").val();
     var toppings = [];
     $("input[name=toppings]:checked").each(function() {
       toppings.push(this.value);
     });
     var myPizza = new Pizza(size,toppings);
-    var pizzas = [];
-    pizzas.push(myPizza);
-    var myCustomer = new Customer(name,pizzas)
-    alert(myCustomer.pizzas[0].toppings);
-    alert(myCustomer.pizzas[0].sizeOfpizza);
+    myCustomer.pizzas.push(myPizza);
     myPizza.calculateCost();
-    alert(myPizza.price);
+    myPizza.addToList();
+    myCustomer.bill += myPizza.price;
+    if(myCustomer.pizzas.length === myCustomer.pizzaAmount){
+      $(this).hide();
+      $("#order").show();
+    }
   });
-
+  $("form#order").submit(function(event){
+    event.preventDefault();
+    alert("Your total is $" + myCustomer.bill + ".00");
+  });
 });

@@ -13,11 +13,20 @@
         <h2>Wecome to Yusuf's Pizza Palace!</h2>
       </div>
       <h3>Place your order in the form below.</h3>
-      <form>
+      <form id="customer">
         <div class="form-group">
           <label for="name">Enter your name</label>
           <input type="text" id="name" class="form-control">
         </div>
+        <div class="form-group">
+          <label for="name">How many pizzas would you like to order?</label>
+          <input type="number" id="pizza-amount" class="form-control">
+        </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Submit</button>
+        </div>
+      </form>
+      <form id="pizza">
         <label for"size">Pick your size of pizza</label>
         <div class="form-group">
           <label class="radio-inline">
@@ -25,32 +34,41 @@
           Small $10
           </label>
           <label class="radio-inline">
-          <input type="radio" name="size" value="medium">
+          <input type="radio" name="size" value="Medium">
           Medium $12
           </label>
           <label class="radio-inline">
-          <input type="radio" name="size" value="large">
+          <input type="radio" name="size" value="Large">
           Large $14
           </label>
         </div>
         <label>Pick your toppings</label>
         <div class="form-group">
           <label class="checkbox-inline">
-            <input type="checkbox" name="toppings" value="olives">
+            <input type="checkbox" name="toppings" value="Olives">
             Olives
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="toppings"value="chicken">
+            <input type="checkbox" name="toppings"value="Chicken">
             Chicken
           </label>
           <label class="checkbox-inline">
-            <input type="checkbox" name="toppings"value="xcheese">
+            <input type="checkbox" name="toppings"value="X-cheese">
             Extra Cheese
           </label>
         </div>
         <div class="form-group">
           <label for"">You get one for free extra toppings are $1 each!</label>
         </div>
+        <div class="form-group">
+          <button class="btn btn-primary">Add Pizza</button>
+        </div>
+      </form>
+      <h4>Your Pizzas:</h4>
+      <ol id="pizza-list">
+
+      </ol>
+      <form id="order">
         <div class="form-group">
           <button class="btn btn-primary">Order!</button>
         </div>
