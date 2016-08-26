@@ -14,22 +14,26 @@
       </div>
       <h3>Place your order in the form below.</h3>
       <form>
+        <div class="form-group">
+          <label for="name">Enter your name</label>
+          <input type="text" id="name" class="form-control">
+        </div>
         <label for"size">Pick your size of pizza</label>
         <div class="form-group">
           <label class="radio-inline">
           <input type="radio" name="size" value="small" checked>
-          Small
+          Small $10
           </label>
           <label class="radio-inline">
           <input type="radio" name="size" value="medium">
-          Medium
+          Medium $12
           </label>
           <label class="radio-inline">
           <input type="radio" name="size" value="large">
-          Large
+          Large $14
           </label>
         </div>
-        <label for"">Pick your toppings</label>
+        <label>Pick your toppings</label>
         <div class="form-group">
           <label class="checkbox-inline">
             <input type="checkbox" name="toppings" value="olives">
@@ -43,6 +47,9 @@
             <input type="checkbox" name="toppings"value="xcheese">
             Extra Cheese
           </label>
+        </div>
+        <div class="form-group">
+          <label for"">You get one for free extra toppings are $1 each!</label>
         </div>
         <div class="form-group">
           <button class="btn btn-primary">Order!</button>
