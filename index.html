@@ -12,8 +12,8 @@
       <div class="well">
         <h2>Wecome to Yusuf's Pizza Palace!</h2>
       </div>
-      <h3>Place your order in the form below.</h3>
       <form id="customer">
+        <h3>Enter your name and number of pizzas you want to order.</h3>
         <div class="form-group">
           <label for="name">Enter your name</label>
           <input type="text" id="name" class="form-control">
@@ -27,6 +27,7 @@
         </div>
       </form>
       <form id="pizza">
+        <h3>On this pizza pick your options</h3>
         <label for"size">Pick your size of pizza</label>
         <div class="form-group">
           <label class="radio-inline">
@@ -61,15 +62,19 @@
           <label for"">You get one for free extra toppings are $1 each!</label>
         </div>
         <div class="form-group">
-          <button class="btn btn-primary">Add Pizza</button>
+          <button class="btn btn-primary">Submit Pizza Choice</button>
         </div>
       </form>
-      <h4>Your Pizzas:</h4>
-      <ol id="pizza-list">
+      <div id="pizza-status">
+        <h4>Your Pizzas:</h4>
+        <ol id="pizza-list">
 
-      </ol>
+        </ol>
+      </div>
       <form id="order">
+        <span id="total"></span>
         <div class="form-group">
+          <br>
           <button class="btn btn-primary">Order!</button>
         </div>
       </form>

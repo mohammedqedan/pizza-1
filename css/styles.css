@@ -1,6 +1,6 @@
 .well{
   text-align: center;
 }
-#pizza, #pizza-list, #order{
+#pizza, #pizza-status, #order{
   display: none;
 }

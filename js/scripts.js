@@ -6,7 +6,7 @@ function Pizza(size,toppings){
 }
 function Customer(){
   this.customerName = "";
-  //this.address = address;
+  this.address = "";
   this.pizzaAmount = 0;
   this.pizzas = [];
   this.bill = 0;
@@ -24,13 +24,24 @@ Pizza.prototype.calculateCost = function(){
     this.price++;
   }
 }
-//UI logic
-Pizza.prototype.addToList = function(){
-  $("#pizza-list").show().append("<li>" + this.sizeOfpizza +  " " + this.toppings.length + " topping " + " $" + this.price + ".00" +"</li>");
+Customer.prototype.calculateBill = function(){
+  this.bill += this.pizzas[this.pizzas.length-1].price;
 }
 
-var myCustomer = new Customer();
+Customer.prototype.amIDoneOrdering = function(){
+  if(this.pizzas.length === this.pizzaAmount)
+    return true;
+  else
+    return false;
+}
+//UI logic
+Pizza.prototype.addToList = function(){
+  $("#pizza-status").show()
+  $("#pizza-list").append("<li>" + this.sizeOfpizza +  " " + this.toppings.length + " topping " + " $" + this.price + ".00" +"</li>");
+}
+
 $(document).ready(function() {
+  var myCustomer = new Customer();
   $("form#customer").submit(function(event){
     event.preventDefault();
     myCustomer.customerName = $("#name").val();
@@ -49,14 +60,15 @@ $(document).ready(function() {
     myCustomer.pizzas.push(myPizza);
     myPizza.calculateCost();
     myPizza.addToList();
-    myCustomer.bill += myPizza.price;
-    if(myCustomer.pizzas.length === myCustomer.pizzaAmount){
+    myCustomer.calculateBill();
+    if(myCustomer.amIDoneOrdering()){
       $(this).hide();
+      $("#total").append("Your total is $" + myCustomer.bill + ".00");
       $("#order").show();
     }
   });
   $("form#order").submit(function(event){
     event.preventDefault();
-    alert("Your total is $" + myCustomer.bill + ".00");
+    alert("Thank you for your order we appreciate your business!")
   });
 });
