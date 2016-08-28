@@ -6,8 +6,11 @@
 
 ## Description
 
-_This is a web page of my ping pong project written in JavaScript and uses the jQuery framework._
-_Enter a number and  your result will display in a list below._
+_This is a web page of my order pizza project written in JavaScript and uses the jQuery framework._
+_Enter your name and desired number of pizzas._
+_Then pick out each pizzas size and toppings._
+_Submit your selections to see your total._
+_Enter your shipping address then place your order!_
 
 ## Setup/Installation Requirements
 
